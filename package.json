@@ -1,0 +1,25 @@
+{
+  "name": "react-with-animation",
+  "version": "1.0.0",
+  "description": "A higher-order-component (HOC) to manage short-lived CSS animations in react",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SmallImprovements/react-with-animation.git"
+  },
+  "keywords": [
+    "react",
+    "animation",
+    "css",
+    "hoc"
+  ],
+  "author": "Lucas Arundell @ Small Improvements",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SmallImprovements/react-with-animation/issues"
+  },
+  "homepage": "https://github.com/SmallImprovements/react-with-animation#readme"
+}

@@ -50,13 +50,14 @@ export default function withAnimation(WrappedComponent) {
         render() {
             const { isAnimating } = this.state;
             const { animationClasses, animationDuration, children, wrappedRef, className, style } = this.props;
+            const classes = `${className ? className : ''} ${isAnimating && animationClasses ? animationClasses : ''}`;
             const componentProps = {
                 ...this.props,
                 style: {
                     ...style,
                     animationDuration: isAnimating ? `${animationDuration}ms` : null,
                 },
-                className: `${className} ${isAnimating ? animationClasses : ''}`,
+                className: classes,
                 ref: wrappedRef,
             };
             return <WrappedComponent {...componentProps}>{children}</WrappedComponent>;

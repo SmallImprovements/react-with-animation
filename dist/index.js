@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { Component } from 'react';
+import React, { Component } from 'react';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
@@ -52,11 +52,12 @@ function withAnimation(WrappedComponent) {
         render() {
             const { isAnimating } = this.state;
             const { animationClasses, animationDuration, children, wrappedRef, className, style } = this.props;
+            const classes = `${className ? className : ''} ${isAnimating && animationClasses ? animationClasses : ''}`;
             const componentProps = _extends({}, this.props, {
                 style: _extends({}, style, {
                     animationDuration: isAnimating ? `${animationDuration}ms` : null
                 }),
-                className: `${className} ${isAnimating ? animationClasses : ''}`,
+                className: classes,
                 ref: wrappedRef
             });
             return React.createElement(

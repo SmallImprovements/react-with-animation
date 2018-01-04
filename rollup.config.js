@@ -3,8 +3,8 @@ import pkg from './package.json';
 
 export default {
     input: 'src/withAnimation.js',
-    external: ['ms'],
-    targets: [{ dest: pkg.main, format: 'es' }],
+    external: ['react', 'prop-types'],
+    output: [{ file: pkg.main, format: 'es' }],
     plugins: [
         babel({
             babelrc: false,

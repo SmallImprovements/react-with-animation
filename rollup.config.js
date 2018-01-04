@@ -18,8 +18,17 @@ export default {
         babel({
             babelrc: false,
             exclude: ['node_modules/**'],
-            presets: ['babel-preset-react'],
             plugins: ['transform-object-rest-spread'],
+            presets: [
+                'react',
+                [
+                    'env',
+                    {
+                        modules: false,
+                    },
+                ],
+                'stage-1',
+            ],
         }),
     ],
 };

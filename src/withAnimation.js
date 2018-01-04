@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import React from 'react';
 
 const propTypes = {
     animationClasses: PropTypes.string.isRequired,
@@ -13,7 +13,7 @@ const defaultProps = {
 };
 
 export default function withAnimation(WrappedComponent) {
-    class ComponentWithAnimation extends Component {
+    class ComponentWithAnimation extends React.Component {
         constructor() {
             super();
             this.state = {

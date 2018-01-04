@@ -4,7 +4,8 @@
   "description": "A higher-order-component (HOC) to manage short-lived CSS animations in react",
   "main": "dist/index.js",
   "scripts": {
-    "build": "rollup -c"
+    "build": "rollup -c",
+    "prepublish": "npm run build"
   },
   "repository": {
     "type": "git",

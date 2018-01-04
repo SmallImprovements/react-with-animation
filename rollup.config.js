@@ -4,7 +4,16 @@ import pkg from './package.json';
 export default {
     input: 'src/withAnimation.js',
     external: ['react', 'prop-types'],
-    output: [{ file: pkg.main, format: 'es' }],
+    output: [
+        {
+            file: pkg.main,
+            format: 'cjs',
+        },
+        {
+            file: pkg.module,
+            format: 'es',
+        },
+    ],
     plugins: [
         babel({
             babelrc: false,

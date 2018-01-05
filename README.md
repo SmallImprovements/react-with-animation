@@ -6,7 +6,7 @@ Let's say you want to temporarily add a CSS class to a React component to play a
 ```
 $('#myThing').addClass('animateMe').delay(3000).removeClass('animateMe');
 ```
-In React, the `$('#myThing')`selector part is a bit different. What we need is a component that can know about which component we want to add (and remove) the CSS classes to. That's what this HOC does - it 'wraps' your component so that it always knows where it is in the React DOM, and can apply and remove the animation when it's done.
+In React, the `$('#myThing')`selector part is a bit different. Because React is declarative in nature, we need  a component that can handle imperatively telling React which component we want to add (and remove) the CSS classes to. That's what this HOC does - it 'wraps' your component so that it always knows where it is in the React DOM, and can apply and remove the animation when it's done.
 ```JSX
 const AnimateMyComponent = withAnimation(MyComponent);
 render() {

@@ -8,8 +8,8 @@ $('#myThing').addClass('animateMe').delay(3000).removeClass('animateMe');
 ```
 In React, the `$('#myThing')`selector part is a bit different. What we need is a component that can know about which component we want to add (and remove) the CSS classes to. That's what this HOC does - it 'wraps' your component so that it always knows where it is in the React DOM, and can apply and remove the animation when it's done.
 ```JSX
+const AnimateMyComponent = withAnimation(MyComponent);
 render() {
-   const AnimateMyComponent = withAnimation(MyComponent);
    return <AnimateMyComponent animationClasses="animateMe" animationDuration={3000} />
 }
 ```
@@ -44,36 +44,38 @@ Check out a working example [here](https://github.com/lucastobrazil/react-with-a
 
 2. Then in React, 
 ```JSX
+const MyComponent = props => <div {...props}>Yay</div>;
+const AnimateMyComponent = withAnimation(MyComponent);
 render() {
-   const MyComponent = props => <div {...props}>Yay</div>;
-   const AnimateMyComponent = withAnimation(MyComponent);
-   return <AnimateMyComponent animationClasses="animateMe" animationDuration={3000} />
+   return <AnimateMyComponent animationClasses="animateMe" animationDuration={3000} animateOnFirstRender={true} />
 }
 ```
 3. On render, `<MyComponent />` will have the CSS class `animateMe` for 3000ms, then once the animation is completed, the class will be removed!
 
-## Options
+## Props
 |Prop|Type |Default|
 |---|---|---|
+|animationClasses | `string` | ''   |
 |animateOnFirstRender | `boolean` | false   |
-|animationDuration | `number` | 3000   |
+|animationDuration | `number`(ms) | 3000   |
 
 ## Methods
 `startAnimation()` Will 'play' the animation again.
 You will need to set a `ref` and you can call `ref.startAnimation();`
 
 ```JSX
+const MyComponent = props => <div {...props}>Yay</div>;
+const AnimateMyComponent = withAnimation(MyComponent);
+
 class Animated extends React.Component {
    start = () => {
       this.animatedComponentRef.startAnimation();
    };
    render() {
-      const MyComponent = props => <div {...props}>Yay</div>;
-      const AnimateMyComponent = withAnimation(MyComponent);
       return (
          <div>
             <AnimateMyComponent animationClasses="animateMe" ref={el => this.animatedComponentRef = el } />
-            
+
             // Click the button and call the start() method of this class
             <Button onClick={this.start}>Play</Button>
          </div>

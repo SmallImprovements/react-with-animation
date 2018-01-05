@@ -85,7 +85,8 @@ class Animated extends React.Component {
 ```
 
 ## Gotchas
-1. The component to be 'wrapped' needs to pass props in... this is where the HOC will add the animation classes *onto* your component, instead of needing to add a wrapper element etc. 
+1. The component to be 'wrapped' needs to pass props in... this is where the HOC will add the animation classes *onto* your component, instead of needing to add a wrapper element etc. Specifically, it needs to pass `className` and `style` props onto the component, but spreading all props is a cleaner way to let all the props pass through.
+
 ```JSX
 const MyComponentToBeWrapped = props => <div {...props} />;
 or

@@ -44,7 +44,7 @@ Check out a working example [here](https://github.com/lucastobrazil/react-with-a
 
 2. Then in React, 
 ```JSX
-const MyComponent = props => <div {...props}>Yay</div>;
+const MyComponent = ({ className, style }) => <div className={className} style={style}>Yay</div>;
 const AnimateMyComponent = withAnimation(MyComponent);
 render() {
    return <AnimateMyComponent animationClasses="animateMe" animationDuration={3000} animateOnFirstRender={true} />
@@ -52,19 +52,28 @@ render() {
 ```
 3. On render, `<MyComponent />` will have the CSS class `animateMe` for 3000ms, then once the animation is completed, the class will be removed!
 
-## Props
-|Prop|Type |Default|
-|---|---|---|
-|animationClasses | `string` | ''   |
-|animateOnFirstRender | `boolean` | false   |
-|animationDuration | `number`(ms) | 3000   |
+## API / Props
+The wrapper HOC takes the following props. These are considered to be the basic configuration
+
+| Prop     	| Type          	| Optional? 	| Default 	|
+|----------	|---------------	|-----------	|---------	|
+| animationClasses 	| `string`  	| no     	| '' |
+| animateOnFirstRender 	| `boolean`      	| yes       	| false |
+| animationDuration 	| `number`(ms) 	| yes        	| 3000 |
+
+It is important to note that the *wrappee* (ie the component that will have the animation applied to it) *must* pass these props:
+
+| Prop     	| What is applied          	|
+|----------	|---------------	|
+| className 	| `animationClasses` + any other classes you place on the component |
+| style 	| `animationDuration` + any other styles you place on the component |
 
 ## Methods
 `startAnimation()` Will 'play' the animation again.
 You will need to set a `ref` and you can call `ref.startAnimation();`
 
 ```JSX
-const MyComponent = props => <div {...props}>Yay</div>;
+const MyComponent = ({ className, style }) => <div className={className} style={style}>Yay</div>;
 const AnimateMyComponent = withAnimation(MyComponent);
 
 class Animated extends React.Component {
@@ -85,26 +94,13 @@ class Animated extends React.Component {
 ```
 
 ## Gotchas
-1. The component to be 'wrapped' needs to pass props in... this is where the HOC will add the animation classes *onto* your component, instead of needing to add a wrapper element etc. Specifically, it needs to pass `className` and `style` props onto the component, but spreading all props is a cleaner way to let all the props pass through.
+1. You should *not* set `animation-duration` in CSS - this is handled via the `animationDuration` prop set in your wrapped component.
 
-```JSX
-const MyComponentToBeWrapped = props => <div {...props} />;
-or
-const MyWrappedComponent = withAnimation(props => <div {...props} />);
-```
-
-When you need to add your own props to your 'wrapped' component, do it like this:
-```JSX
-<MyComponentToBeWrapped foo={bar} className="boo" animationClasses="animated" animationDuration={3000} />
-```
-
-2. You should *not* set `animation-duration` in CSS - this is handled via the `animationDuration` prop set in your wrapped component.
-
-3. You need to wrap the actual component/element that will have the css animation applied to it. If you want some `<Text />` inside a div to be animated, wrap the `<Text />` component in the HOC, not the parent.
+2. You need to wrap the actual component/element that will have the css animation applied to it. If you want some `<Text />` inside a div to be animated, wrap the `<Text />` component in the HOC, not the parent.
 
 ## License
 
-Released under the [MIT license](https://opensource.org/licenses/MIT) by Davy Duperron.
+Released under the [MIT license](https://opensource.org/licenses/MIT).
 
 ## Contribute
 

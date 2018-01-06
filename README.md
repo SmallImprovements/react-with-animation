@@ -1,6 +1,9 @@
 # react-with-animation
 
 A higher-order-component (HOC) to manage short-lived CSS animations in React
+
+Working example: [here](https://lucastobrazil.github.io/react-with-animation-example/) or take a quick squiz at the code example further down the readme.
+
 ## Concept
 Let's say you want to temporarily add a CSS class to a React component to play a little animation, and when the animation's finished, remove the class. Sounds like a simple enough thing to do, right? We've been doing that for years in jQuery:
 ```
@@ -22,7 +25,7 @@ There are plenty of ways to do this, but this HOC offers a simple, unified way t
 npm i react-with-animation --save
 ```
 ## Example
-Check out a working example [here](https://github.com/lucastobrazil/react-with-animation-example) or take a quick squiz at the code example below.
+Check out a working example [here](https://lucastobrazil.github.io/react-with-animation-example/) or take a quick squiz at the code example below.
 
 1. Set up your CSS Animation
 ```CSS

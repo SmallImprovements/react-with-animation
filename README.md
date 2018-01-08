@@ -17,7 +17,7 @@ render() {
    return (
       <WithAnimationContainer animationClasses="animateMe" animationDuration={3000}>
          <MyComponent />
-      </ WithAnimationContainer>
+      </WithAnimationContainer>
    );
 }
 ```

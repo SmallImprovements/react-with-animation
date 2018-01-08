@@ -1,6 +1,6 @@
 # react-with-animation
 
-A higher-order-component (HOC) to manage short-lived CSS animations in React
+A Component and a Higher-Order-Component (HOC) to manage short-lived CSS animations in React
 
 Working example: [here](https://lucastobrazil.github.io/react-with-animation-example/) or take a quick squiz at the code example further down the readme.
 
@@ -9,16 +9,19 @@ Let's say you want to temporarily add a CSS class to a React component to play a
 ```
 $('#myThing').addClass('animateMe').delay(3000).removeClass('animateMe');
 ```
-In React, the `$('#myThing')`selector part is a bit different. Because React is declarative in nature, we need  a component that can handle imperatively telling React which component we want to add (and remove) the CSS classes to. That's what this HOC does - it 'wraps' your component so that it always knows where it is in the React DOM, and can apply and remove the animation when it's done.
+In React, the `$('#myThing')`selector part is a bit different. Because React is declarative in nature, we need  a component that can handle imperatively telling React which component we want to add (and remove) the CSS classes to. That's what this `react-with-animation` does - it 'wraps' your component so that it always knows where it is in the React DOM, and can apply and remove the animation when it's done.
 ```JSX
-const AnimateMyComponent = withAnimation(MyComponent);
+import { WithAnimationContainer } from 'react-with-animation';
+
 render() {
-   return <AnimateMyComponent animationClasses="animateMe" animationDuration={3000} />
+   return (
+      <WithAnimationContainer animationClasses="animateMe" animationDuration={3000}>
+         <MyComponent />
+      </ WithAnimationContainer>
+   );
 }
 ```
-<img src="https://github.com/lucastobrazil/react-with-animation-example/blob/master/src/example-withAnimation.gif" />
-
-There are plenty of ways to do this, but this HOC offers a simple, unified way to integrate such animations into your already-existing components, without needing to add change them or add all the boilerplate code each time.
+There are plenty of ways to do this, but this project offers a simple, unified way to integrate such animations into your already-existing components, without needing to add change them or add all the boilerplate code each time.
 
 ## Installation
 ```
@@ -47,6 +50,22 @@ Check out a working example [here](https://lucastobrazil.github.io/react-with-an
 
 2. Then in React, 
 ```JSX
+import { WithAnimationContainer } from 'react-with-animation';
+
+render() {
+   return (
+      <WithAnimationContainer animationClasses="animateMe" animationDuration={3000}>
+         <MyComponent />
+      </WithAnimationContainer>
+   );
+}
+```
+3. On render, `<MyComponent />` will be wrapped with an element that has the CSS class `animateMe` for 3000ms, then once the animation is completed, the class will be removed!
+
+### Alternative (HOC) usage
+```JSX
+import { withAnimation } from 'react-with-animation';
+
 const MyComponent = ({ className, style }) => <div className={className} style={style}>Yay</div>;
 const AnimateMyComponent = withAnimation(MyComponent);
 render() {
@@ -55,8 +74,10 @@ render() {
 ```
 3. On render, `<MyComponent />` will have the CSS class `animateMe` for 3000ms, then once the animation is completed, the class will be removed!
 
+<img src="https://github.com/lucastobrazil/react-with-animation-example/blob/master/src/example-withAnimation.gif" />
+
 ## API / Props
-The wrapper HOC takes the following props. These are considered to be the basic configuration
+Both `<WithAnimationContainer>` and the Component passed to the `withAnimation` HOC take the following props. These are considered to be the basic configuration
 
 | Prop     	| Type          	| Optional? 	| Default 	|
 |----------	|---------------	|-----------	|---------	|
@@ -64,7 +85,7 @@ The wrapper HOC takes the following props. These are considered to be the basic 
 | animateOnFirstRender 	| `boolean`      	| yes       	| false |
 | animationDuration 	| `number`(ms) 	| yes        	| 3000 |
 
-It is important to note that the *wrappee* (ie the component that will have the animation applied to it) *must* pass these props:
+When using the HOC, it is important to note that the *wrappee* (ie the component that will have the animation applied to it) *must* pass these props:
 
 | Prop     	| What is applied          	|
 |----------	|---------------	|
@@ -72,10 +93,12 @@ It is important to note that the *wrappee* (ie the component that will have the 
 | style 	| `animationDuration` + any other styles you place on the component |
 
 ## Methods
-`startAnimation()` Will 'play' the animation again.
+When using the HOC, you can call `startAnimation()` and it will will 'play' the animation again.
 You will need to set a `ref` and you can call `ref.startAnimation();`
 
 ```JSX
+import { withAnimation } from 'react-with-animation';
+
 const MyComponent = ({ className, style }) => <div className={className} style={style}>Yay</div>;
 const AnimateMyComponent = withAnimation(MyComponent);
 
@@ -95,11 +118,16 @@ class Animated extends React.Component {
    }
 }
 ```
+## Should I use the <WithAnimationContainer> or the HOC?
+The choice is yours - however one caveat with your CSS animations relates to which CSS properties you animate. 
+   
+For example, if you want to animate the CSS properties which affect all of an element's children (like `transform`, `position` etc), use the `<WithAnimationContainer>`. Although the animation will be applied to our `WithAnimationContainer` wrapper element, luckily all the children will follow suit :)
+
+If your animation needs to animate specific properties of the element (`background-color`, `border-color`) for instance, then you can use the HOC so that the animation is placed directly on the element which has the background, border etc. One example of this is if you have a "Card" style component whose border colour might flash if it's just been created. 
+
 
 ## Gotchas
 1. You should *not* set `animation-duration` in CSS - this is handled via the `animationDuration` prop set in your wrapped component.
-
-2. You need to wrap the actual component/element that will have the css animation applied to it. If you want some `<Text />` inside a div to be animated, wrap the `<Text />` component in the HOC, not the parent.
 
 ## License
 

@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { Component } from 'react';
 
-const propTypes = {
+export const propTypes = {
     animationClasses: PropTypes.string.isRequired,
     animationDuration: PropTypes.number,
     animateOnFirstRender: PropTypes.bool,
@@ -13,7 +13,7 @@ const defaultProps = {
 };
 
 export default function withAnimation(WrappedComponent) {
-    class ComponentWithAnimation extends React.Component {
+    class ComponentWithAnimation extends Component {
         constructor() {
             super();
             this.state = {
@@ -50,18 +50,13 @@ export default function withAnimation(WrappedComponent) {
         render() {
             const { isAnimating } = this.state;
             const { animationClasses, animationDuration, children, wrappedRef, className, style } = this.props;
-            const classes = []
-                .concat(className ? [className] : [])
-                .concat(isAnimating && animationClasses ? [animationClasses] : [])
-                .join(' ');
-
             const componentProps = {
                 ...this.props,
                 style: {
                     ...style,
                     animationDuration: isAnimating ? `${animationDuration}ms` : null,
                 },
-                className: classes,
+                className: `${className ? className : ''} ${isAnimating ? animationClasses : ''}`,
                 ref: wrappedRef,
             };
             return <WrappedComponent {...componentProps}>{children}</WrappedComponent>;

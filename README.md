@@ -1,6 +1,6 @@
 # React with Animation
 
-A Component and a Higher-Order-Component (HOC) to manage short-lived CSS animations in React
+A Component and a Higher-Order-Component (HOC) to manage short-lived CSS animations in React.
 
 **Working example**: [here](https://lucastobrazil.github.io/react-with-animation-example/) or take a quick squiz at the code example further down the readme.
 

@@ -1,8 +1,8 @@
-# react-with-animation
+# React with Animation
 
 A Component and a Higher-Order-Component (HOC) to manage short-lived CSS animations in React
 
-Working example: [here](https://lucastobrazil.github.io/react-with-animation-example/) or take a quick squiz at the code example further down the readme.
+**Working example**: [here](https://lucastobrazil.github.io/react-with-animation-example/) or take a quick squiz at the code example further down the readme.
 
 ## Concept
 Let's say you want to temporarily add a CSS class to a React component to play a little animation, and when the animation's finished, remove the class. Sounds like a simple enough thing to do, right? We've been doing that for years in jQuery:

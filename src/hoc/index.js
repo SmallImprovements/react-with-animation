@@ -3,13 +3,11 @@ import React, { Component } from 'react';
 
 export const propTypes = {
     animationClasses: PropTypes.string.isRequired,
-    animationDuration: PropTypes.number,
     animateOnFirstRender: PropTypes.bool,
 };
 
 const defaultProps = {
     animateOnFirstRender: false,
-    animationDuration: 3000,
 };
 
 export default function withAnimation(WrappedComponent) {
@@ -19,13 +17,8 @@ export default function withAnimation(WrappedComponent) {
             this.state = {
                 isAnimating: false,
             };
-            this.timeoutFunc = null;
             this.startAnimation = this.startAnimation.bind(this);
             this.handleAnimationEnd = this.handleAnimationEnd.bind(this);
-        }
-
-        componentWillUnmount() {
-            clearTimeout(this.timeoutFunc);
         }
 
         componentWillMount() {
@@ -38,9 +31,6 @@ export default function withAnimation(WrappedComponent) {
             if (this.state.isAnimating) {
                 return;
             }
-            const { animationDuration } = this.props;
-            clearTimeout(this.timeoutFunc);
-
             this.setState({ isAnimating: true });
         }
 
@@ -50,7 +40,7 @@ export default function withAnimation(WrappedComponent) {
 
         render() {
             const { isAnimating } = this.state;
-            const { animationClasses, animationDuration, children, wrappedRef, className, style } = this.props;
+            const { animationClasses, children, wrappedRef, className, style } = this.props;
             const classes = []
                 .concat(className ? [className] : [])
                 .concat(isAnimating && animationClasses ? [animationClasses] : [])
@@ -58,10 +48,6 @@ export default function withAnimation(WrappedComponent) {
 
             const componentProps = {
                 ...this.props,
-                style: {
-                    ...style,
-                    animationDuration: isAnimating ? `${animationDuration}ms` : null,
-                },
                 className: classes,
                 ref: wrappedRef,
                 onAnimationEnd: this.handleAnimationEnd,

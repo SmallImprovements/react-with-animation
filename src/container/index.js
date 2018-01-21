@@ -7,8 +7,8 @@ WithAnimationContainer.propTypes = propTypes;
 /*
     In order to pass a react component to the hoc, we need to create a React element for the div
 */
-const Div = ({ children, className, style }) => (
-    <div className={className} style={style}>
+const Div = ({ children, className, style, onAnimationEnd }) => (
+    <div className={className} style={style} onAnimationEnd={onAnimationEnd}>
         {children}
     </div>
 );

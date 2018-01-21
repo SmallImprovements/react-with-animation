@@ -21,6 +21,7 @@ export default function withAnimation(WrappedComponent) {
             };
             this.timeoutFunc = null;
             this.startAnimation = this.startAnimation.bind(this);
+            this.handleAnimationEnd = this.handleAnimationEnd.bind(this);
         }
 
         componentWillUnmount() {
@@ -41,10 +42,10 @@ export default function withAnimation(WrappedComponent) {
             clearTimeout(this.timeoutFunc);
 
             this.setState({ isAnimating: true });
+        }
 
-            this.timeoutFunc = setTimeout(() => {
-                this.setState({ isAnimating: false });
-            }, animationDuration);
+        handleAnimationEnd() {
+            this.setState({ isAnimating: false });
         }
 
         render() {
@@ -63,6 +64,7 @@ export default function withAnimation(WrappedComponent) {
                 },
                 className: classes,
                 ref: wrappedRef,
+                onAnimationEnd: this.handleAnimationEnd,
             };
             return <WrappedComponent {...componentProps}>{children}</WrappedComponent>;
         }

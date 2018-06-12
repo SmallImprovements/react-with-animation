@@ -1,6 +1,6 @@
 {
     "name": "react-with-animation",
-    "version": "1.0.2",
+    "version": "1.0.21",
     "description": "A higher-order-component (HOC) to manage short-lived CSS animations in react",
     "main": "dist/bundle.js",
     "module": "dist/module.js",
@@ -34,7 +34,7 @@
         "rollup-plugin-babel": "^3.0.3"
     },
     "peerDependencies": {
-        "react": "^15.3.0 || 16.2.0"
+        "react": "^15.3.0 || ^16.2.0"
     },
     "dependencies": {
         "prop-types": "^15.6.0"

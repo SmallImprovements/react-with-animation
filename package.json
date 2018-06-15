@@ -1,42 +1,42 @@
 {
-  "name": "react-with-animation",
-  "version": "1.0.21",
-  "description": "A higher-order-component (HOC) to manage short-lived CSS animations in react",
-  "main": "dist/bundle.js",
-  "module": "dist/module.js",
-  "scripts": {
-      "build": "rollup -c",
-      "prepare": "npm run build"
-  },
-  "repository": {
-      "type": "git",
-      "url": "git+https://github.com/SmallImprovements/react-with-animation.git"
-  },
-  "keywords": [
-      "react",
-      "animation",
-      "css",
-      "hoc"
-  ],
-  "author": "Lucas Arundell @ Small Improvements",
-  "license": "ISC",
-  "bugs": {
-      "url": "https://github.com/SmallImprovements/react-with-animation/issues"
-  },
-  "homepage": "https://github.com/SmallImprovements/react-with-animation#readme",
-  "devDependencies": {
-      "babel-core": "^6.26.0",
-      "babel-plugin-transform-object-rest-spread": "^6.26.0",
-      "babel-preset-env": "^1.7.0",
-      "babel-preset-react": "^6.24.1",
-      "babel-preset-stage-1": "^6.24.1",
-      "rollup": "^0.53.2",
-      "rollup-plugin-babel": "^3.0.3"
-  },
-  "peerDependencies": {
-      "react": "^15.3.0 || ^16.2.0"
-  },
-  "dependencies": {
-      "prop-types": "^15.6.0"
-  }
+    "name": "react-with-animation",
+    "version": "1.0.3",
+    "description": "A higher-order-component (HOC) to manage short-lived CSS animations in react",
+    "main": "dist/bundle.js",
+    "module": "dist/module.js",
+    "scripts": {
+        "build": "rollup -c",
+        "prepare": "npm run build"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/SmallImprovements/react-with-animation.git"
+    },
+    "keywords": [
+        "react",
+        "animation",
+        "css",
+        "hoc"
+    ],
+    "author": "Lucas Arundell @ Small Improvements",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/SmallImprovements/react-with-animation/issues"
+    },
+    "homepage": "https://github.com/SmallImprovements/react-with-animation#readme",
+    "devDependencies": {
+        "babel-core": "^6.26.0",
+        "babel-plugin-transform-object-rest-spread": "^6.26.0",
+        "babel-preset-env": "^1.7.0",
+        "babel-preset-react": "^6.24.1",
+        "babel-preset-stage-1": "^6.24.1",
+        "rollup": "^0.53.2",
+        "rollup-plugin-babel": "^3.0.3"
+    },
+    "peerDependencies": {
+        "react": "^15.3.0 || ^16.2.0"
+    },
+    "dependencies": {
+        "prop-types": "^15.6.0"
+    }
 }

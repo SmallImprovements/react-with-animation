@@ -46,8 +46,8 @@ export default function withAnimation(WrappedComponent) {
         }
 
         setAnimationState(isAnimating) {
-            this.setState({ isAnimating: isAnimating });
             this.computeStyle(this.props.style, isAnimating, this.props.animationDuration);
+            this.setState({ isAnimating: isAnimating });
         }
 
         startAnimation() {
